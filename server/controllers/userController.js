@@ -59,4 +59,20 @@ res.cookie('jwt','',{
  res.status(200).json({ message: "Logged out successfully" });
 }
 
-export { authUser,registerUser,logout };
+ const getUserProfile = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+        });
+    } else {
+        res.status(404);
+        throw new Error("User not found");
+    }
+});
+
+
+export { authUser, registerUser, logout, getUserProfile };
