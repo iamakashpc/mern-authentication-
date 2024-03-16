@@ -1,5 +1,5 @@
 import express from "express";
-import { authUser, getUserProfile, logout, registerUser } from "../controllers/userController.js";
+import { authUser, getUserProfile, logout, registerUser, updateUserProfile } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.post("/login", asyncHandler(authUser));
 router.post("/logout", logout);
 router
 	.route("/profile")
-	.get(protect, getUserProfile);
-	// .put(protect, updateUserProfile);
+	.get(protect, getUserProfile)
+	.put(protect, updateUserProfile);
 
 export default router;
