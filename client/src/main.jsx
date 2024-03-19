@@ -10,6 +10,8 @@ import RegisterScreen from './pages/RegisterScreen.jsx';
 import store from './store.js';
 import { Provider } from 'react-redux';
 import Welcome from './pages/Welcome.jsx';
+import Profile from './pages/Profile.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
 
 
 
@@ -19,7 +21,11 @@ const router = createBrowserRouter(
 			<Route index={true} path="/" element={<Home />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/register" element={<RegisterScreen />} />
-			<Route path="/welcome" element={<Welcome />} />
+
+			<Route path="" element={<PrivateRoute />}>
+				<Route path="/welcome" element={<Welcome />} />
+				<Route path="/profile" element={<Profile />} />
+			</Route>
 		</Route>
 	)
 );
