@@ -21,3 +21,15 @@ This project is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) appli
 - bcrypt.js: A library used for hashing passwords.
 - React Router: Used for client-side routing.
 - Redux (optional): Used for state management
+
+  1. Clone the repository:
+     git clone https://github.com/iamakashpc/mern-authentication-.git
+
+  
+  2. Navigate to the project directory:
+     cd mern-authentication-
+  
+
+
+
+
