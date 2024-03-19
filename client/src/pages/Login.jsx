@@ -1,19 +1,38 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
 import FormContainer from "../components/FormContainer";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../slices/userApiSlice";
+import { setCredentials } from "../slices/authSlice";
+import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 const Login = () => {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");
+	const [login, { isLoading }] = useLoginMutation();
+	const { userInfo } = useSelector((state) => state.auth);
 
-    const submitHandler = (e) =>{
-        e.preventDefault();
-        console.log("submit")
-    }
-  return (
+	useEffect(() => {
+		if (userInfo) {
+			navigate("/");
+		}
+	}, [navigate, userInfo]);
+
+	const submitHandler = async (e) => {
+		e.preventDefault();
+		try {
+			const res = await login({ email, password }).unwrap();
+			dispatch(setCredentials({ ...res }));
+			navigate("/");
+		} catch (err) {
+            toast.error(err?.data?.message || err.error);
+        }
+	};
+	return (
 		<FormContainer>
 			<h1>Sign In</h1>
 			<Form onSubmit={submitHandler}>
@@ -39,6 +58,7 @@ const Login = () => {
 					Sign In
 				</Button>
 			</Form>
+			{isLoading && <Loader />}
 			<Row className="py-3">
 				<Col>
 					New Customer? <Link to="/register">Register</Link>
@@ -46,6 +66,6 @@ const Login = () => {
 			</Row>
 		</FormContainer>
 	);
-}
+};
 
-export default Login
+export default Login;
