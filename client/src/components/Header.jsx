@@ -4,11 +4,23 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../slices/authSlice";
+import { useLogoutMutation } from "../slices/userApiSlice";
 const Header = () => {
 	const { userInfo } = useSelector((state) => state.auth);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+    const [logoutApiCall] = useLogoutMutation();
+
+     const logoutHandler = async () => {
+				try {
+					await logoutApiCall().unwrap();
+					dispatch(logout());
+					navigate("/login");
+				} catch (err) {
+					console.error(err);
+				}
+			};
 	return (
 		<header>
 			<Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
@@ -25,7 +37,7 @@ const Header = () => {
 									<LinkContainer to="/profile">
 										<NavDropdown.Item>Profile</NavDropdown.Item>
 									</LinkContainer>
-									<NavDropdown.Item >
+									<NavDropdown.Item onClick={logoutHandler}>
 										Logout
 									</NavDropdown.Item>
 								</NavDropdown>
