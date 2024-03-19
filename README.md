@@ -29,6 +29,68 @@ This project is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) appli
   2. Navigate to the project directory:
      cd mern-authentication-
   
+  3. Install dependencies for both server and client:
+     cd client
+     npm install
+     cd ..
+     npm install
+  
+  4. Set up environment variables:
+
+   Create a `.env` file in the root directory and add the following variables:
+  PORT=5000
+  MONGODB_URI=your_mongodb_connection_string
+  JWT_SECRET=your_jwt_secret_key
+  
+ Replace `your_mongodb_connection_string` and `your_jwt_secret_key` with your MongoDB connection string and a secret key for JWT.
+
+5. Start the server:
+   npm start
+
+   
+6. Navigate to `http://localhost:5000` in your browser to view the application.
+
+## Usage
+
+- Register a new user by providing a username and password.
+- Login with the registered credentials.
+- Access protected routes (e.g., user profile) after successful login.
+- Update or delete the user profile as needed.
+- Logout to end the session.
+
+## Folder Structure
+
+mern-authentication-/
+│
+├── client/ # Frontend React application
+│ ├── public/ # Static files
+│ └── src/ # React components and assets
+│
+├── server/ # Backend Node.js application
+│ ├── config/ # Configuration files (e.g., database connection)
+│ ├── controllers/ # Request handlers
+│ ├── middleware/ # Middleware functions (e.g., authentication)
+│ ├── models/ # Mongoose models
+│ ├── routes/ # API routes
+│ └── server.js # Express server setup
+│
+└── README.md # Project documentation
+
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request for any improvements or additional features.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+
+
+
+
+
 
 
 
