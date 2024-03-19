@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Home from './pages/Home.jsx';
+import Login from './pages/Login.jsx';
+import RegisterScreen from './pages/RegisterScreen.jsx';
 
 
 
@@ -12,6 +14,8 @@ const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
 			<Route index={true} path="/" element={<Home />} />
+			<Route path="/login" element={<Login />} />
+			<Route path="/register" element={<RegisterScreen />} />
 		</Route>
 	)
 );
