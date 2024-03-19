@@ -20,4 +20,4 @@ This project is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) appli
 - JSON Web Tokens (JWT): Used for secure authentication.
 - bcrypt.js: A library used for hashing passwords.
 - React Router: Used for client-side routing.
-- Redux (optional): Used for state management, if applicable.
+- Redux (optional): Used for state management
